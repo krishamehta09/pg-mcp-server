@@ -70,6 +70,18 @@ Add to claude_desktop_config.json (Claude Desktop -> Settings -> Developer -> Ed
       }
     }
 
+## Example
+
+Asking Claude "What tables are in my connected Postgres database?" after connecting:
+
+![Claude listing tables via the MCP server](screenshots/list-tables.png)
+
+Following up on table stats surfaced a real finding - the orders table had zero index scans despite 2,000 rows, meaning every lookup was a full sequential scan:
+
+![Claude surfacing a missing-index insight via get_table_stats](screenshots/table-stats-insight.png)
+
+This is the server doing what it's meant to do: giving an AI client safe, structured access to a real database, and letting the model reason over the result rather than just dumping raw output.
+
 ## Stack
 
 Python, PostgreSQL, MCP Python SDK, psycopg2
